@@ -45,13 +45,26 @@ namespace CourseWork
 
         }
 
+        bool EqualsNil(double x)
+        {
+            if (Math.Abs(x) < 0.000001)
+                return true;
+            else
+                return false;
+        }
+
+
         void InitializeLabel(Label lb, double[] coeff, int n)
         {
-            lb.Text = "";
-            string format = "{0:F6}*x{1} + ";
-            for (int i = 0; i < n; i++)
+            lb.Text = String.Format("{0:F6}", coeff[0]);
+            string format = "{0:F6}*x{1}";
+            for (int i = 1; i < n; i++)
             {
-                lb.Text += String.Format(format, coeff[i], MakeSuperscriptNumber(i));
+                if(!EqualsNil(coeff[i]))
+                    if (coeff[i] < 0)
+                        lb.Text += " - " + String.Format(format, Math.Abs(coeff[i]), MakeSuperscriptNumber(i));
+                    else
+                        lb.Text += " + " + String.Format(format, coeff[i], MakeSuperscriptNumber(i));
             }
         }
 

@@ -124,30 +124,30 @@
             // labelWorst
             // 
             this.labelWorst.AutoSize = true;
-            this.labelWorst.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelWorst.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelWorst.Location = new System.Drawing.Point(3, 92);
             this.labelWorst.Name = "labelWorst";
-            this.labelWorst.Size = new System.Drawing.Size(35, 13);
+            this.labelWorst.Size = new System.Drawing.Size(70, 25);
             this.labelWorst.TabIndex = 1;
             this.labelWorst.Text = "label1";
             // 
             // labelAverage
             // 
             this.labelAverage.AutoSize = true;
-            this.labelAverage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAverage.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelAverage.Location = new System.Drawing.Point(3, 92);
             this.labelAverage.Name = "labelAverage";
-            this.labelAverage.Size = new System.Drawing.Size(51, 20);
+            this.labelAverage.Size = new System.Drawing.Size(70, 26);
             this.labelAverage.TabIndex = 2;
             this.labelAverage.Text = "label1";
             // 
             // labelBest
             // 
             this.labelBest.AutoSize = true;
-            this.labelBest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelBest.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelBest.Location = new System.Drawing.Point(3, 92);
             this.labelBest.Name = "labelBest";
-            this.labelBest.Size = new System.Drawing.Size(51, 20);
+            this.labelBest.Size = new System.Drawing.Size(70, 26);
             this.labelBest.TabIndex = 2;
             this.labelBest.Text = "label1";
             // 
