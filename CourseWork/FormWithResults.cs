@@ -21,12 +21,14 @@ namespace CourseWork
 
         void InitializeDataGrid(DataGridView dgv, Points[] p, int n)
         {
-            dataGridViewWorst.RowCount = 2;
-            dataGridViewWorst.ColumnCount = n;
+            dgv.RowCount = 2;
+            dgv.ColumnCount = n;
+            dgv.Rows[0].HeaderCell.Value = "Длина теста";
+            dgv.Rows[1].HeaderCell.Value = "Время работы";
             for(int i = 0; i < n; i++)
             {
-                dgv.Rows[1].Cells[i].Value = p[i].x;
-                dgv.Rows[2].Cells[i].Value = p[i].y;
+                dgv.Rows[0].Cells[i].Value = p[i].x;
+                dgv.Rows[1].Cells[i].Value = p[i].y;
             }
         }
 
@@ -37,10 +39,12 @@ namespace CourseWork
 
         void InitializeAverage()
         {
+            InitializeDataGrid(dataGridViewAverage, data.average, data.n);
         }
 
         void InitializeBest()
         {
+            InitializeDataGrid(dataGridViewBest, data.best, data.n);
         }
 
         private void InitializeCases()
@@ -51,6 +55,11 @@ namespace CourseWork
         }
 
         private void FormWithResults_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPageWorst_Click(object sender, EventArgs e)
         {
 
         }

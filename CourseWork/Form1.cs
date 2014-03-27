@@ -167,9 +167,9 @@ namespace CourseWork
             }
         }*/
         
-        private void AddSeries(Points[] p, int seriesNum, double maxX)
+        private void AddSeries(Points[] p, double[] coeff, int seriesNum, double maxX)
         {
-            double[] coeff = ApproximationClass.ApproximateFunction(GetX(p), GetY(p), p.Length);
+            
 
             //Тип таблицы - линейный график
             Chart1.Series[seriesNum].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -192,12 +192,16 @@ namespace CourseWork
         {
             Chart1.Series.Clear();
 
+            coeffWorst = ApproximationClass.ApproximateFunction(GetX(worst), GetY(worst), worst.Length);
+            coeffAverage = ApproximationClass.ApproximateFunction(GetX(average), GetY(average), average.Length);
+            coeffBest = ApproximationClass.ApproximateFunction(GetX(best), GetY(best), best.Length);
+
             Chart1.Series.Add("Время работы в худшем случае");
-            AddSeries(worst, 0, maxX);
+            AddSeries(worst, coeffWorst, 0, maxX);
             Chart1.Series.Add("Время работы в среднем случае");
-            AddSeries(average, 1, maxX);
+            AddSeries(average, coeffAverage, 1, maxX);
             Chart1.Series.Add("Время работы в лучшем случае");
-            AddSeries(best, 2, maxX);
+            AddSeries(best, coeffBest, 2, maxX);
 
             ShowSeries();
         }
@@ -388,6 +392,8 @@ namespace CourseWork
             MakeChart(worst, average, best, maxX);
             InitializeChart(true);
             BuildChartButton.Show();
+            PROGRAM_PROGRESS = ProgramStages.ResultsShown;
+            ShowResultsButton.Text = "Подробнее...";
         }
 
         /// <summary>
@@ -404,6 +410,7 @@ namespace CourseWork
             BuildChartButton.Text = BUTTON_START;
             if (AskForResults())
             {
+                ShowResultsButton.Visible = true;
                 ShowResults();
             }
         }
@@ -429,8 +436,6 @@ namespace CourseWork
             if (PROGRAM_PROGRESS != ProgramStages.ResultsShown)
             {
                 ShowResults();
-                PROGRAM_PROGRESS = ProgramStages.ResultsShown;
-                ShowResultsButton.Text = "Подробнее...";
             }
             else
             {
