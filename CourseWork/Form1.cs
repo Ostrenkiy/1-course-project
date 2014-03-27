@@ -74,6 +74,11 @@ namespace CourseWork
         Points[] worst;
         Points[] average; // Массивы х и у - наши вычисленные данные
         Points[] best;
+
+        double[] coeffWorst;
+        double[] coeffAverage; // Коэффициенты полиномов
+        double[] coeffBest;
+
         double maxX; //Максимальное значение по оси Ох, которое следует отображать на графике
         int[] tipIdCount = new int[SORTS_COUNT] {-1, -1, -1};
         int[] TotalTipCount = new int[SORTS_COUNT] { 1, 1, 6 };
@@ -400,7 +405,6 @@ namespace CourseWork
             if (AskForResults())
             {
                 ShowResults();
-                PROGRAM_PROGRESS = ProgramStages.ResultsShown;
             }
         }
 
@@ -422,9 +426,42 @@ namespace CourseWork
         /// <param name="e"></param>
         private void ShowResultsButton_Click(object sender, EventArgs e)
         {
-            ShowResultsButton.Hide();
-            ShowResults();
+            if (PROGRAM_PROGRESS != ProgramStages.ResultsShown)
+            {
+                ShowResults();
+                PROGRAM_PROGRESS = ProgramStages.ResultsShown;
+                ShowResultsButton.Text = "Подробнее...";
+            }
+            else
+            {
+                FormWithResults FormRes = new FormWithResults(GetTestingResults());
+                FormRes.ShowDialog();
+            }
         }
+
+        TestingResults GetTestingResults()
+        {
+            TestingResults res;
+            res.n = 15;
+            res.worst = worst;
+            res.average = average;
+            res.best = best;
+            res.coeffWorst = coeffWorst;
+            res.coeffAverage = coeffAverage;
+            res.coeffBest = coeffBest;
+            return res;
+        }
+    }
+
+    public struct TestingResults
+    {
+        public Points[] worst;
+        public Points[] average;
+        public Points[] best;
+        public double[] coeffWorst;
+        public double[] coeffAverage;
+        public double[] coeffBest;
+        public int n;
     }
 
     public class TesterClass
