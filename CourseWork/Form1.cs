@@ -94,8 +94,11 @@ namespace CourseWork
         public void ShowSeries()
         {
             Chart1.Series[0].Enabled = WorstCaseBox.Checked;
-            Chart1.Series[1].Enabled = AverageCaseBox.Checked;
-            Chart1.Series[2].Enabled = BestCaseBox.Checked;
+            Chart1.Series[1].Enabled = WorstCaseBox.Checked;
+            Chart1.Series[2].Enabled = AverageCaseBox.Checked;
+            Chart1.Series[3].Enabled = AverageCaseBox.Checked;
+            Chart1.Series[4].Enabled = BestCaseBox.Checked;
+            Chart1.Series[5].Enabled = BestCaseBox.Checked;
 
         }
 
@@ -167,19 +170,37 @@ namespace CourseWork
             }
         }*/
         
-        private void AddSeries(Points[] p, double[] coeff, int seriesNum, double maxX)
+        private void AddSeries(Points[] p, double[] coeff, int seriesNum, double maxX, Color seriesColor)
         {
-            
-
             //Тип таблицы - линейный график
             Chart1.Series[seriesNum].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-
+            Chart1.Series[seriesNum].Color = seriesColor;
             // Добавляем точки
-            for (int i = 1; i <= maxX - 0.1 * maxX; i += 100)
+            for (int i = 1; i <= maxX; i += 100)
             {
                 Chart1.Series[seriesNum].Points.AddXY(i, CountFunctionValue(coeff, p.Length, i));
             }
         }
+
+
+        /// <summary>
+        /// Добавляет на график точки, по которым функция аппроксимируется
+        /// </summary>
+        /// <param name="p">Массив точек, по которым проводилась аппроксимация</param>
+        /// <param name="SeriesNum">Номер линии</param>
+        /// <param name="seriesColor"></param>
+        private void AddPointSeries(Points[] p, int seriesNum, Color seriesColor)
+        {
+            //Тип таблицы - точки
+            Chart1.Series[seriesNum].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            Chart1.Series[seriesNum].Color = seriesColor;
+            // Добавляем точки
+            for (int i = 0; i < p.Length; i++)
+            {
+                Chart1.Series[seriesNum].Points.AddXY(p[i].x, p[i].y);
+            }
+        }
+
 
         /// <summary>
         /// Метод, строящий график на основе трех таблиц со значениями(аппроксимация - внутри).
@@ -197,11 +218,20 @@ namespace CourseWork
             coeffBest = ApproximationClass.ApproximateFunction(GetX(best), GetY(best), best.Length);
 
             Chart1.Series.Add("Время работы в худшем случае");
-            AddSeries(worst, coeffWorst, 0, maxX);
+            AddSeries(worst, coeffWorst, 0, maxX, Color.Red);
+            Chart1.Series.Add("Конкретные результаты работы в худшем случае");
+            AddPointSeries(worst, 1, Color.Red);
+            
             Chart1.Series.Add("Время работы в среднем случае");
-            AddSeries(average, coeffAverage, 1, maxX);
+            AddSeries(average, coeffAverage, 2, maxX, Color.Blue);
+            Chart1.Series.Add("Конкретные результаты работы в среднем случае");
+            AddPointSeries(average, 3, Color.Blue);
+            
             Chart1.Series.Add("Время работы в лучшем случае");
-            AddSeries(best, coeffBest, 2, maxX);
+            AddSeries(best, coeffBest, 4, maxX, Color.Green);
+            Chart1.Series.Add("Конкретные результаты работы в лучшем случае");
+            AddPointSeries(best, 5, Color.Green);
+
 
             ShowSeries();
         }
@@ -231,7 +261,7 @@ namespace CourseWork
         /// <param name="sortType">строка - тип сортировки</param>
         public void OperateWithSort(SortTypes sortType)
         {
-             backgroundWorkerForTesting.RunWorkerAsync(sortType);
+            backgroundWorkerForTesting.RunWorkerAsync(sortType);
             currentSort = sortType;
             ShowNextTip(sortType);
         }
@@ -270,24 +300,33 @@ namespace CourseWork
         /// </summary>
         private void BuildChartButton_Click(object sender, EventArgs e)
         {
+            if (PROGRAM_PROGRESS == ProgramStages.TestingInProgress)
+                return;
+
             PROGRAM_PROGRESS = ProgramStages.TestingInProgress;
+            SortGroupBox.Enabled = false;
             BuildChartButton.Hide();
             InitializeChart(false);
             InitializeTips(true);
             InitializeProgressBar(true);
 
+            pictureBoxSortAnimation.Show();
+
             if (BubbleSortButton.Checked == true)
             {
+                pictureBoxSortAnimation.Image = Properties.Resources.bubble_sort;
                 OperateWithSort(SortTypes.BubbleSort);
                 return;
             }
             if (HeapSortButton.Checked == true)
             {
+                pictureBoxSortAnimation.Image = Properties.Resources.heap_sort;
                 OperateWithSort(SortTypes.HeapSort);
                 return;
             }
             if (QuickSortButton.Checked == true)
             {
+                pictureBoxSortAnimation.Image = Properties.Resources.quick_sort;
                 OperateWithSort(SortTypes.QuickSort);
                 return;
             }
@@ -301,7 +340,10 @@ namespace CourseWork
         private void WorstCaseBox_CheckedChanged(object sender, EventArgs e)
         {
             if (Chart1.Series.Count >= 1)
+            {
                 Chart1.Series[0].Enabled = WorstCaseBox.Checked;
+                Chart1.Series[1].Enabled = WorstCaseBox.Checked;
+            }
         }
 
         /// <summary>
@@ -312,7 +354,10 @@ namespace CourseWork
         private void AverageCaseBox_CheckedChanged(object sender, EventArgs e)
         {
             if (Chart1.Series.Count >= 2)
-                Chart1.Series[1].Enabled = AverageCaseBox.Checked;
+            {
+                Chart1.Series[2].Enabled = AverageCaseBox.Checked;
+                Chart1.Series[3].Enabled = AverageCaseBox.Checked;
+            }
         }
 
         /// <summary>
@@ -323,7 +368,10 @@ namespace CourseWork
         private void BestCaseBox_CheckedChanged(object sender, EventArgs e)
         {
             if (Chart1.Series.Count >= 3)
-                Chart1.Series[2].Enabled = BestCaseBox.Checked;
+            {
+                Chart1.Series[4].Enabled = BestCaseBox.Checked;
+                Chart1.Series[5].Enabled = BestCaseBox.Checked;
+            }
         }
 
         private void backgroundWorkerForTesting_DoWork(object sender, DoWorkEventArgs e)
@@ -387,6 +435,8 @@ namespace CourseWork
         /// </summary>
         private void ShowResults()
         {
+            SortGroupBox.Enabled = true;
+            pictureBoxSortAnimation.Hide();
             InitializeProgressBar(false);
             InitializeTips(false);
             MakeChart(worst, average, best, maxX);
@@ -408,11 +458,17 @@ namespace CourseWork
 
             PROGRAM_PROGRESS = ProgramStages.TestingCompletedResultsNotShown;
             BuildChartButton.Text = BUTTON_START;
+            ShowResultsButton.Visible = true;
             if (AskForResults())
             {
-                ShowResultsButton.Visible = true;
                 ShowResults();
+                ShowResultsButton.Text = "Подробнее...";
             }
+            else
+            {
+                ShowResultsButton.Text = "Перейти к результатам!";
+            }
+            
         }
 
         /// <summary>
@@ -456,6 +512,13 @@ namespace CourseWork
             res.coeffBest = coeffBest;
             return res;
         }
+
+        private void TipsTextBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 
     public struct TestingResults

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.LineAnnotation lineAnnotation1 = new System.Windows.Forms.DataVisualization.Charting.LineAnnotation();
+            System.Windows.Forms.DataVisualization.Charting.VerticalLineAnnotation verticalLineAnnotation1 = new System.Windows.Forms.DataVisualization.Charting.VerticalLineAnnotation();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
@@ -50,10 +52,12 @@
             this.AverageCaseBox = new System.Windows.Forms.CheckBox();
             this.WorstCaseBox = new System.Windows.Forms.CheckBox();
             this.Chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.pictureBoxSortAnimation = new System.Windows.Forms.PictureBox();
             this.SortGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
             this.CasesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSortAnimation)).BeginInit();
             this.SuspendLayout();
             // 
             // SortGroupBox
@@ -124,6 +128,10 @@
             // 
             // Chart1
             // 
+            lineAnnotation1.Name = "LineAnnotation1";
+            verticalLineAnnotation1.Name = "VerticalLineAnnotation1";
+            this.Chart1.Annotations.Add(lineAnnotation1);
+            this.Chart1.Annotations.Add(verticalLineAnnotation1);
             chartArea1.Name = "ChartArea1";
             this.Chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -178,6 +186,7 @@
             this.TipsTextBox.TabIndex = 14;
             this.TipsTextBox.Text = "";
             this.TipsTextBox.Visible = false;
+            this.TipsTextBox.Click += new System.EventHandler(this.TipsTextBox_Click);
             // 
             // labelTestingProgress
             // 
@@ -266,11 +275,23 @@
             this.Chart.Text = "График";
             this.Chart.Visible = false;
             // 
+            // pictureBoxSortAnimation
+            // 
+            this.pictureBoxSortAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxSortAnimation.Location = new System.Drawing.Point(597, 12);
+            this.pictureBoxSortAnimation.Name = "pictureBoxSortAnimation";
+            this.pictureBoxSortAnimation.Size = new System.Drawing.Size(166, 147);
+            this.pictureBoxSortAnimation.TabIndex = 18;
+            this.pictureBoxSortAnimation.TabStop = false;
+            this.pictureBoxSortAnimation.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(768, 454);
+            this.Controls.Add(this.pictureBoxSortAnimation);
             this.Controls.Add(this.NextTipButton);
             this.Controls.Add(this.ShowResultsButton);
             this.Controls.Add(this.TipsLabel);
@@ -290,6 +311,7 @@
             this.CasesGroupBox.ResumeLayout(false);
             this.CasesGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSortAnimation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,6 +337,7 @@
         private System.Windows.Forms.CheckBox AverageCaseBox;
         private System.Windows.Forms.CheckBox WorstCaseBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart Chart;
+        private System.Windows.Forms.PictureBox pictureBoxSortAnimation;
     }
 }
 
