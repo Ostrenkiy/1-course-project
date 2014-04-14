@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.LineAnnotation lineAnnotation1 = new System.Windows.Forms.DataVisualization.Charting.LineAnnotation();
-            System.Windows.Forms.DataVisualization.Charting.VerticalLineAnnotation verticalLineAnnotation1 = new System.Windows.Forms.DataVisualization.Charting.VerticalLineAnnotation();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.LineAnnotation lineAnnotation2 = new System.Windows.Forms.DataVisualization.Charting.LineAnnotation();
+            System.Windows.Forms.DataVisualization.Charting.VerticalLineAnnotation verticalLineAnnotation2 = new System.Windows.Forms.DataVisualization.Charting.VerticalLineAnnotation();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.SortGroupBox = new System.Windows.Forms.GroupBox();
             this.HeapSortButton = new System.Windows.Forms.RadioButton();
             this.QuickSortButton = new System.Windows.Forms.RadioButton();
@@ -62,6 +62,8 @@
             // 
             // SortGroupBox
             // 
+            this.SortGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SortGroupBox.Controls.Add(this.HeapSortButton);
             this.SortGroupBox.Controls.Add(this.QuickSortButton);
             this.SortGroupBox.Controls.Add(this.BubbleSortButton);
@@ -109,6 +111,7 @@
             // 
             // BuildChartButton
             // 
+            this.BuildChartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BuildChartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BuildChartButton.Location = new System.Drawing.Point(597, 21);
             this.BuildChartButton.Name = "BuildChartButton";
@@ -128,14 +131,19 @@
             // 
             // Chart1
             // 
-            lineAnnotation1.Name = "LineAnnotation1";
-            verticalLineAnnotation1.Name = "VerticalLineAnnotation1";
-            this.Chart1.Annotations.Add(lineAnnotation1);
-            this.Chart1.Annotations.Add(verticalLineAnnotation1);
-            chartArea1.Name = "ChartArea1";
-            this.Chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.Chart1.Legends.Add(legend1);
+            this.Chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            lineAnnotation2.Name = "LineAnnotation1";
+            verticalLineAnnotation2.Name = "VerticalLineAnnotation1";
+            this.Chart1.Annotations.Add(lineAnnotation2);
+            this.Chart1.Annotations.Add(verticalLineAnnotation2);
+            chartArea3.AxisX.Title = "Размер теста";
+            chartArea3.AxisY.Title = "Время работы в тиках";
+            chartArea3.Name = "ChartArea1";
+            this.Chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.Chart1.Legends.Add(legend3);
             this.Chart1.Location = new System.Drawing.Point(16, 179);
             this.Chart1.Name = "Chart1";
             this.Chart1.Size = new System.Drawing.Size(567, 240);
@@ -144,6 +152,7 @@
             // 
             // ShowResultsButton
             // 
+            this.ShowResultsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ShowResultsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ShowResultsButton.Location = new System.Drawing.Point(591, 366);
             this.ShowResultsButton.Name = "ShowResultsButton";
@@ -179,6 +188,9 @@
             // 
             // TipsTextBox
             // 
+            this.TipsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.TipsTextBox.Location = new System.Drawing.Point(12, 196);
             this.TipsTextBox.Name = "TipsTextBox";
             this.TipsTextBox.ReadOnly = true;
@@ -190,6 +202,7 @@
             // 
             // labelTestingProgress
             // 
+            this.labelTestingProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelTestingProgress.AutoSize = true;
             this.labelTestingProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelTestingProgress.Location = new System.Drawing.Point(6, 357);
@@ -201,6 +214,8 @@
             // 
             // progressBarTestingProgress
             // 
+            this.progressBarTestingProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBarTestingProgress.Location = new System.Drawing.Point(12, 393);
             this.progressBarTestingProgress.MarqueeAnimationSpeed = 1;
             this.progressBarTestingProgress.Name = "progressBarTestingProgress";
@@ -211,6 +226,8 @@
             // 
             // CasesGroupBox
             // 
+            this.CasesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.CasesGroupBox.Controls.Add(this.BestCaseBox);
             this.CasesGroupBox.Controls.Add(this.AverageCaseBox);
             this.CasesGroupBox.Controls.Add(this.WorstCaseBox);
@@ -264,10 +281,10 @@
             // Chart
             // 
             this.Chart.BackColor = System.Drawing.SystemColors.Control;
-            chartArea2.Name = "ChartArea1";
-            this.Chart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.Chart.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.Chart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.Chart.Legends.Add(legend4);
             this.Chart.Location = new System.Drawing.Point(6, 196);
             this.Chart.Name = "Chart";
             this.Chart.Size = new System.Drawing.Size(572, 234);
